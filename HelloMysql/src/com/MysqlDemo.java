@@ -37,7 +37,7 @@ public class MysqlDemo {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, inputUser);
             ps.setString(2, inputPassword);
-            System.out.println(sql);
+            System.out.println(ps);
 
 
             ResultSet rs = ps.executeQuery();

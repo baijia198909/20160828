@@ -31,10 +31,27 @@ public class Login extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        
+        String codes = request.getSession().getAttribute("codes").toString();
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
+        //前台获取验证码
+        String inputCcode = request.getParameter("checkcode");
+
+        System.out.println(inputCcode+"++++++"+codes);
+        if(inputCcode.toUpperCase().equals(codes)){
+            
+        }else
+        {
+            PrintWriter out = response.getWriter();
+            out.flush();
+            out.println("<script>");
+            out.println("alert('验证码不正确，请重新输入');");
+            out.println("history.back();");
+            out.println("</script>");
+            out.close();
+            return ;
+        }
       //从前台读取到的用户名
         String username = request.getParameter("username");
         //从前台读取到的密码
@@ -60,7 +77,6 @@ public class Login extends HttpServlet {
             out.println("</script>");
             out.close();
         }
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
