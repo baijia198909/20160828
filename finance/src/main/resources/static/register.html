@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册页面</title>
+<script>
+function on_submit()
+{
+	if(form1.password.value.length<6)
+	{
+	 alert("密码长度大于6位！");
+	 form1.password.focus();
+	  return false;
+	
+	}
+
+	if (form1.password.value != form1.pass2.value)
+		 {
+		 alert("密码与确认密码不同");
+		 form1.password.focus();
+		  return false;
+		 }
+
+}
+</script>
+</head>
+<body>
+<div class="title">欢迎注册</div><br>
+<div align="center">
+<table>
+<tr>
+    <td align="center" valign="middle" >
+     <form action="register" method="post" name="form1" onsubmit="return on_submit()">
+     <span>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span><input type="text" name="user" required="required"><br><br>
+     <span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input type="password" required="required" name="password"><br><br>
+     <span>确认密码：</span><input type="password"  required="required" name="pass2"><br><br>
+ 	<input type="submit" value="提交" class="login">&nbsp;&nbsp;&nbsp;
+ 	<input type="reset" value="重置" class="login">
+     </form>
+    </td>
+</tr>
+</table>
+</div>
+</body>
+</html>

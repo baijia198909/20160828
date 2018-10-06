@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> 
+<head>
+    <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div  align="center" style="margin-top:10%">
+   <form th:action="@{/bill/{action}(action=${action})}" method="post" class="form-horizontal">
+
+
+
+        <div class="form-group">
+            <label for="book_name" class="col-sm-2 control-label">项目:</label>
+            <div class="col-xs-4">
+                <input type="text" class="form-control" id="book_name" name="name" th:value="${bill.item}"
+                       th:field="*{bill.item}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book_writer" class="col-sm-2 control-label">金额:</label>
+            <div class="col-xs-4">
+                <input type="text" class="form-control" id="book_writer" name="writer" th:value="${bill.price}"
+                       th:field="*{bill.price}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book_introduction" class="col-sm-2 control-label">备注说明:</label>
+            <div class="col-xs-4">
+                <textarea class="form-control" id="book_introduction" rows="3" name="introduction"
+                          th:value="${bill.remark}" th:field="*{bill.remark}"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input class="btn btn-primary" type="submit" value="提交"/>&nbsp;&nbsp;
+                <input class="btn" type="button" value="返回" onclick="history.back()"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

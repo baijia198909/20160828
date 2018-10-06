@@ -1,0 +1,68 @@
+<!DOCTYPE >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> 
+<head>
+
+    <link th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet"/>
+<head>
+<meta charset="UTF-8" >
+<title>Insert title here</title>
+<style>
+#container{
+border-radius:8px;
+overflow:hidden;
+box-shadow:1px 1px 1px #666
+}
+#header{
+height:100px;
+text-align:center;
+backgroud:#EEE
+}
+#main-content,#main-nav,#main-aside{
+padding:1em;
+}
+#main-content{
+backgroud:white
+}
+.contentDiv {
+padding:20px 60px;
+}
+</style>
+
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h2 id="myId" value=""> </h2>
+		<h2>账单 </h2>
+		
+	</div>
+	<div id="main-wrap">
+		<section id="main-content">
+		<table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>项目</th>
+            <th>金额</th>
+            <th>备注说明</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bill:${billList}">
+            <td th:text="${bill.date}"></td>
+            <td th:text="${bill.item}"></td>
+            <td th:text="${bill.price}"></td>
+            <td th:text="${bill.remark}"></td>
+            <td><a class="btn btn-danger" th:href="@{/bill/delete/{id}(id=${bill.id})}" >删除</a></td> 
+        </tr>
+        </tbody>
+        
+    </table>
+         <div><a class="btn btn-primary" href="/bill/create" role="button">新增一笔</a></div>
+    	<div><a class="btn btn-primary" role="button" onclick="getUserName()">刷新</a></div>
+
+	</div>
+</div>
+
+</body>
+</html>
