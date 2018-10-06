@@ -29,7 +29,7 @@ public interface BillMapper {
      * @return
      */
     @Select("SELECT * FROM bill WHERE id = #{id}")
-    Bill findByNameID(@Param("id") String id);
+    Bill findByNameID(@Param("id") Long id);
     
     /**
      * 新增bill
@@ -60,5 +60,8 @@ public interface BillMapper {
     })
     @Select("SELECT id,date,name,item,price,remark FROM bill WHERE name = #{name}")
     List<Bill> findAllByName(@Param("name") String name);
+    
+    @Update("UPDATE bill SET item = #{item},price = #{price},remark = #{remark} WHERE id = #{id}")
+    void update(@Param("id") Long id,@Param("item") String item,@Param("price") String price,@Param("remark") String remark);
     
 }

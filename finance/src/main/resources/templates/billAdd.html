@@ -11,7 +11,7 @@
 <div  align="center" style="margin-top:10%">
    <form th:action="@{/bill/{action}(action=${action})}" method="post" class="form-horizontal">
 
-
+		<input type="hidden" name="id" th:value="${bill.id}"/>
 
         <div class="form-group">
             <label for="book_name" class="col-sm-2 control-label">项目:</label>

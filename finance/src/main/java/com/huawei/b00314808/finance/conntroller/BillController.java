@@ -30,6 +30,7 @@ public class BillController {
     public String getBookList(ModelMap map,HttpServletRequest request) {
         String username = request.getSession().getAttribute("username").toString();
         map.addAttribute("billList",billmapper.findAllByName(username));
+        map.addAttribute("name", username);
         return "main";
     }
     /**
@@ -50,7 +51,6 @@ public class BillController {
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String postBill(@ModelAttribute Bill bill,HttpServletRequest request) {
-        System.out.println("create");
         java.util.Date utilDate=new java.util.Date();
         bill.date=new Date(utilDate.getTime());
         
@@ -67,6 +67,27 @@ public class BillController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable Long id) {
         billmapper.delete(id);
+        return "redirect:/bill";
+    }
+    /**
+     * 获取更新 Book 表单
+     *    处理 "/book/update/{id}" 的 GET 请求，通过 URL 中的 id 值获取 Book 信息
+     *    URL 中的 id ，通过 @PathVariable 绑定参数
+     */
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String getUser(@PathVariable Long id, ModelMap map) {
+        map.addAttribute("bill", billmapper.findByNameID(id));
+        map.addAttribute("action", "update");
+        return "billAdd";
+    }
+    /**
+     * 更新 Book
+     * 处理 "/update" 的 PUT 请求，用来更新 Book 信息
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String putBook(@ModelAttribute Bill bill) {
+        //System.out.println(bill.id+bill.item+bill.price+bill.remark);
+        billmapper.update(bill.id,bill.item,bill.price,bill.remark);
         return "redirect:/bill";
     }
 }

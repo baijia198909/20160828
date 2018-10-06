@@ -83,10 +83,10 @@ public class Login {
         //从前台读取到的密码
         String pwd = request.getParameter("password");
         int result= employeeMapper.findByNameAndPass(username,pwd);
-        System.out.println(result);
         if(result>0){
             request.getSession().setAttribute("username", username);
             map.addAttribute("billList",billMapper.findAllByName(username));
+            map.addAttribute("name", username);
             return "main";
         }else
         {
